@@ -18,6 +18,7 @@ public class SecurityConfig {
                 .authorizeExchange(ex -> ex
                         // ✅ actuator/health, info 같은 헬스엔드포인트 공개
                         .pathMatchers("/actuator/**", "/v1/actuator/**").permitAll()
+                        .pathMatchers("/v1/health").permitAll()  
                         // Swagger, API 문서도 여기서 공개하려면 추가 가능
                         // .pathMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .anyExchange().authenticated()
