@@ -29,7 +29,8 @@ public class SecurityConfig {
                         // 인증 없이 열어둘 엔드포인트
                         .pathMatchers("/v1/auth/**").permitAll()
                         // 나머지는 인증 (원하면 permitAll로 바꿔도 됨)
-                        .anyExchange().authenticated()
+                        .pathMatchers("/actuator/**").permitAll()
+                        .anyExchange().permitAll() 
                 )
                 .build();
     }
