@@ -16,14 +16,13 @@ public class SecurityConfig {
         return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(ex -> ex
-                        // ✅ actuator/health, info 같은 헬스엔드포인트 공개
-                        .pathMatchers("/actuator/**", "/v1/actuator/**").permitAll()
-                        .pathMatchers("/v1/health").permitAll()  
+                        //.pathMatchers("/actuator/**", "/v1/actuator/**").permitAll()
+                        //.pathMatchers("/v1/health").permitAll()  
                         // Swagger, API 문서도 여기서 공개하려면 추가 가능
                         // .pathMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .anyExchange().authenticated()
+                        //.anyExchange().authenticated()
+                        .anyExchange().permitAll()  
                 )
-                // ✅ 기본 로그인 폼/HTTP Basic 비활성화
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .build();
